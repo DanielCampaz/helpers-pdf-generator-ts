@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <title>{{DOCUMENT_TITLE}}</title>
+  <link rel="stylesheet" href="styles-corporate.css"/>
+</head>
+<body>
+<div class="page">
+  <header class="hdr">
+    <div class="hdr-brand">
+      <div class="logo-wrap {{LOGO_CLASS}}">
+        {{LOGO_IMG_TAG}}<span class="logo-initials">{{LOGO_INITIALS}}</span>
+      </div>
+      <div class="hdr-name"><h1>{{COMPANY_NAME}}</h1><p>{{COMPANY_TAGLINE}}</p></div>
+    </div>
+    <div class="hdr-meta">
+      <div class="hm-type">{{DOC_TYPE_LABEL}}</div>
+      <div class="hm-num">{{DOC_NUMBER}}</div>
+      <div class="hm-date">{{DOC_DATE}}</div>
+    </div>
+  </header>
+
+  <div class="tbar">
+    <h2>{{DOCUMENT_TITLE}}</h2>
+    <span class="tbar-badge">{{STATUS_BADGE}}</span>
+  </div>
+
+  <main class="body">
+    <div class="parties">
+      <div class="pcard">
+        <div class="pcard-lbl">Emisor</div>
+        <div class="pcard-name">{{SENDER_NAME}}</div>
+        <div class="pcard-det">{{SENDER_ADDRESS}}<br>{{SENDER_CITY}}<br>{{SENDER_TAX_ID}}<br>{{SENDER_EMAIL}}</div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-lbl">Receptor</div>
+        <div class="pcard-name">{{RECEIVER_NAME}}</div>
+        <div class="pcard-det">{{RECEIVER_ADDRESS}}<br>{{RECEIVER_CITY}}<br>{{RECEIVER_TAX_ID}}<br>{{RECEIVER_EMAIL}}</div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-hd"><span class="sec-dot"></span><h3>Descripción</h3><span class="sec-rule"></span></div>
+      <p class="para">{{DOCUMENT_DESCRIPTION}}</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-hd"><span class="sec-dot"></span><h3>Detalle</h3><span class="sec-rule"></span></div>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>#</th><th>Concepto</th><th>Cantidad</th><th>Precio Unitario</th><th>Total</th></tr></thead>
+          <tbody>{{ITEMS_HTML}}</tbody>
+        </table>
+      </div>
+      <div class="totals">
+        <div class="tbox">
+          <div class="trow"><span class="tlbl">Subtotal</span><span class="tval">{{SUBTOTAL}}</span></div>
+          <div class="trow"><span class="tlbl">Descuento ({{DISCOUNT_PCT}})</span><span class="tval">{{DISCOUNT_AMOUNT}}</span></div>
+          <div class="trow"><span class="tlbl">IVA / Tax ({{TAX_PCT}})</span><span class="tval">{{TAX_AMOUNT}}</span></div>
+          <div class="trow trow-final"><span class="tlbl">Total</span><span class="tval">{{TOTAL}}</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-hd"><span class="sec-dot"></span><h3>Términos y Condiciones</h3><span class="sec-rule"></span></div>
+      <div class="note"><strong>Nota:</strong> {{TERMS_AND_CONDITIONS}}</div>
+    </div>
+
+    <div class="signs sign-2">{{SIGNATORIES_HTML}}</div>
+  </main>
+
+  <footer class="ftr">
+    <span class="fl">{{COMPANY_NAME}} · {{COMPANY_WEBSITE}}</span>
+    <span class="fpg">{{PAGE_NUMBER}} / {{TOTAL_PAGES}}</span>
+    <span class="fr">{{DOC_NUMBER}} · {{DOC_DATE}}</span>
+  </footer>
+</div>
+</body>
+</html>

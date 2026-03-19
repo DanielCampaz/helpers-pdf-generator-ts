@@ -1,0 +1,1052 @@
+/* ═══════════════════════════════════════════════════════════════
+   SISTEMA DE DISEÑO CORPORATIVO — estilos compartidos
+   Usado por: corporate-pdf-template, report-template,
+              report-tables-template
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Variables ────────────────────────────────────────────────── */
+:root {
+  --navy: #0B1829;
+  --navy-mid: #152540;
+  --navy-s: #1E3A5F;
+  --gold: #C8973A;
+  --gold-lt: #E4B86A;
+  --gold-pale: #FDF3E0;
+  --surf: #F5F7FA;
+  --bord: #DDE3EC;
+  --text: #1A2332;
+  --text-s: #4A5568;
+  --muted: #8896A8;
+  --W: #FFFFFF;
+  --green: #1A7F4B;
+  --gbg: #E6F4ED;
+  --red: #C0392B;
+  --rbg: #FDECEA;
+  --amber: #A0600A;
+  --abg: #FEF3DC;
+  --ffd: 'Georgia', 'Times New Roman', serif;
+  --ffs: 'Helvetica Neue', 'Arial', sans-serif;
+  --ffm: 'Courier New', monospace;
+  --mg: 48px;
+  /* padding right y base left */
+  --mgl: 53px;
+  /* padding left = mg + 5px stripe */
+}
+
+/* ── Reset ────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  background: var(--W);
+}
+
+body {
+  font-family: var(--ffs);
+  color: var(--text);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* ── Página ───────────────────────────────────────────────────── */
+.page {
+  width: 100%;
+  position: relative;
+}
+
+.page::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: linear-gradient(180deg, var(--gold) 0%, var(--navy-s) 100%);
+  z-index: 2;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SECCIONES COMPARTIDAS POR LOS 3 TEMPLATES
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Header ──────────────────────────────────────────────────── */
+.hdr {
+  background: var(--navy);
+  padding: 26px var(--mg) 22px var(--mgl);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  /* Cancela el margin-top del PDF en la página 1.
+     En páginas 2+ no hay .hdr, así que el margin-top da el espacio deseado. */
+  margin-top: -20px;
+}
+
+.hdr-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 9px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gold);
+}
+
+.logo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.logo-initials {
+  font-family: var(--ffd);
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--navy);
+  letter-spacing: -1px;
+}
+
+.logo-wrap.has-image .logo-initials {
+  display: none;
+}
+
+.hdr-name h1 {
+  font-family: var(--ffd);
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--W);
+}
+
+.hdr-name p {
+  font-size: 9px;
+  color: rgba(255, 255, 255, .4);
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.hdr-meta {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.hm-type {
+  font-size: 8.5px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold-lt);
+  margin-bottom: 5px;
+}
+
+.hm-num {
+  font-family: var(--ffd);
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--W);
+}
+
+.hm-date {
+  font-size: 10px;
+  color: rgba(255, 255, 255, .4);
+  margin-top: 4px;
+}
+
+/* ── Barra de título ─────────────────────────────────────────── */
+.tbar {
+  background: var(--gold);
+  padding: 11px var(--mg) 11px var(--mgl);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.tbar h2 {
+  font-family: var(--ffd);
+  font-size: 15px;
+  color: var(--navy);
+  font-weight: bold;
+}
+
+.tbar-badge {
+  background: var(--navy);
+  color: var(--gold-lt);
+  font-size: 8.5px;
+  font-weight: bold;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* ── Strip de metadatos (informe narrativo / tablas) ─────────── */
+/* .istrip → informe narrativo  |  .mbar → informe tablas
+   Misma estructura, solo difiere el selector */
+.istrip,
+.mbar {
+  display: flex;
+  background: var(--navy-mid);
+  padding: 0 var(--mg) 0 var(--mgl);
+}
+
+.is-cell,
+.mb-cell {
+  flex: 1;
+  padding: 10px 14px 10px 0;
+  border-right: 1px solid rgba(255, 255, 255, .1);
+}
+
+.is-cell:first-child,
+.mb-cell:first-child {
+  padding-left: 0;
+}
+
+.is-cell:last-child,
+.mb-cell:last-child {
+  border-right: none;
+  padding-left: 14px;
+  padding-right: 0;
+}
+
+.is-lbl,
+.mb-lbl {
+  font-size: 7.5px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .38);
+  margin-bottom: 3px;
+}
+
+.is-val,
+.mb-val {
+  font-size: 10px;
+  color: rgba(255, 255, 255, .85);
+  font-weight: 600;
+}
+
+/* ── Cuerpo ──────────────────────────────────────────────────── */
+.body {
+  padding: 30px var(--mg) 30px var(--mgl);
+}
+
+/* Caja callout: exec summary / intro / observaciones */
+.callout {
+  background: var(--gold-pale);
+  border: 1px solid #EDD59A;
+  border-left: 4px solid var(--gold);
+  border-radius: 0 7px 7px 0;
+  padding: 14px 18px;
+  margin-bottom: 24px;
+}
+
+.callout-lbl {
+  font-size: 8.5px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: bold;
+  margin-bottom: 7px;
+}
+
+.callout p,
+.callout-txt {
+  font-size: 11.5px;
+  line-height: 1.8;
+  color: var(--text-s);
+}
+
+/* Separador */
+.sep {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.sep-txt {
+  font-size: 8.5px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+.sep-ln {
+  flex: 1;
+  height: 1px;
+  background: var(--bord);
+}
+
+/* ── Sección de texto ────────────────────────────────────────── */
+.sec {
+  margin-bottom: 26px;
+}
+
+.sec-hd {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.sec-dot {
+  width: 7px;
+  height: 7px;
+  background: var(--gold);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.sec-hd h3 {
+  font-family: var(--ffd);
+  font-size: 11.5px;
+  font-weight: bold;
+  color: var(--navy);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+
+.sec-rule {
+  flex: 1;
+  height: 1px;
+  background: var(--bord);
+}
+
+.para,
+.sec p {
+  font-size: 11.5px;
+  line-height: 1.88;
+  color: var(--text-s);
+  text-align: justify;
+  margin-bottom: 10px;
+}
+
+.sec p:last-child {
+  margin-bottom: 0;
+}
+
+.sec h4 {
+  font-family: var(--ffd);
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--navy);
+  margin: 15px 0 7px;
+  padding-left: 11px;
+  border-left: 3px solid var(--gold);
+}
+
+/* Lista */
+.clist {
+  list-style: none;
+  margin: 8px 0 12px;
+}
+
+.clist li {
+  font-size: 11.5px;
+  line-height: 1.7;
+  color: var(--text-s);
+  padding: 5px 0 5px 20px;
+  position: relative;
+  border-bottom: 1px dotted var(--bord);
+}
+
+.clist li:last-child {
+  border-bottom: none;
+}
+
+.clist li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-size: 9px;
+  top: 7px;
+}
+
+/* Cita */
+.pquote {
+  margin: 20px 0;
+  padding: 16px 24px;
+  background: var(--surf);
+  border-radius: 7px;
+  position: relative;
+  border: 1px solid var(--bord);
+}
+
+.pquote::before {
+  content: '"';
+  font-family: var(--ffd);
+  font-size: 56px;
+  color: var(--gold);
+  opacity: .2;
+  position: absolute;
+  top: -4px;
+  left: 14px;
+  line-height: 1;
+}
+
+.pquote-text {
+  font-family: var(--ffd);
+  font-size: 13px;
+  font-style: italic;
+  color: var(--navy-s);
+  line-height: 1.65;
+  text-align: center;
+  position: relative;
+}
+
+.pquote-src {
+  text-align: right;
+  font-size: 9.5px;
+  color: var(--muted);
+  margin-top: 7px;
+}
+
+/* Conclusiones */
+.cgrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.ccard {
+  border: 1px solid var(--bord);
+  border-radius: 7px;
+  padding: 13px 15px;
+  background: var(--surf);
+}
+
+.ccard-num {
+  font-family: var(--ffd);
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--bord);
+  line-height: 1;
+  margin-bottom: 5px;
+}
+
+.ccard-ttl {
+  font-family: var(--ffd);
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--text);
+  margin-bottom: 5px;
+}
+
+.ccard-txt {
+  font-size: 10.5px;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   INVOICE — partes, tabla, totales, nota
+   ══════════════════════════════════════════════════════════════ */
+.parties {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.pcard {
+  border: 1px solid var(--bord);
+  border-radius: 8px;
+  padding: 15px 17px;
+  background: var(--surf);
+}
+
+.pcard-lbl {
+  font-size: 8.5px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--navy-s);
+  font-weight: bold;
+  margin-bottom: 9px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pcard-lbl::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--gold);
+  opacity: .4;
+}
+
+.pcard-name {
+  font-family: var(--ffd);
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.pcard-det {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.note {
+  background: var(--surf);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 7px 7px 0;
+  padding: 13px 16px;
+  font-size: 11px;
+  line-height: 1.75;
+  color: var(--text-s);
+}
+
+.note strong {
+  color: var(--navy-s);
+}
+
+.totals {
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.tbox {
+  width: 42%;
+  min-width: 240px;
+  border: 1px solid var(--bord);
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.trow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 14px;
+  font-size: 11.5px;
+  border-bottom: 1px solid var(--bord);
+}
+
+.trow:last-child {
+  border-bottom: none;
+}
+
+.tlbl {
+  color: var(--muted);
+}
+
+.tval {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.trow-final {
+  background: var(--navy);
+  padding: 11px 14px;
+}
+
+.trow-final .tlbl {
+  color: rgba(255, 255, 255, .6);
+  font-weight: bold;
+  font-size: 9.5px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+}
+
+.trow-final .tval {
+  color: var(--gold-lt);
+  font-size: 14px;
+  font-family: var(--ffd);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   TABLA GENÉRICA (invoice + tables report)
+   ══════════════════════════════════════════════════════════════ */
+.twrap {
+  border-radius: 7px;
+  overflow: hidden;
+  border: 1px solid var(--bord);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+
+thead tr {
+  background: var(--navy-mid);
+}
+
+thead th {
+  padding: 9px 12px;
+  text-align: left;
+  color: rgba(255, 255, 255, .9);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: .8px;
+}
+
+thead th:last-child,
+thead th.right {
+  text-align: right;
+}
+
+thead th.center {
+  text-align: center;
+}
+
+tbody tr {
+  border-bottom: 1px solid var(--bord);
+}
+
+tbody tr:last-child {
+  border-bottom: none;
+}
+
+tbody tr:nth-child(even) {
+  background: var(--surf);
+}
+
+tbody td {
+  padding: 8px 12px;
+  color: var(--text);
+  vertical-align: middle;
+}
+
+tbody td:last-child {
+  text-align: right;
+  font-weight: 600;
+  color: var(--navy-s);
+}
+
+tbody td.right {
+  text-align: right;
+}
+
+tbody td.center {
+  text-align: center;
+}
+
+tbody td.mono {
+  font-family: var(--ffm);
+  font-size: 10px;
+}
+
+tbody td.bold {
+  font-weight: 700;
+}
+
+tbody td.muted {
+  color: var(--muted);
+}
+
+tfoot tr {
+  background: var(--navy);
+}
+
+tfoot td {
+  padding: 9px 12px;
+  font-size: 10.5px;
+  font-weight: bold;
+  color: var(--W);
+}
+
+tfoot td.right {
+  text-align: right;
+  color: var(--gold-lt);
+}
+
+tfoot td.center {
+  text-align: center;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   TABLES REPORT — métricas, bloques de tabla, chips
+   ══════════════════════════════════════════════════════════════ */
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.mcard {
+  border: 1px solid var(--bord);
+  border-radius: 7px;
+  padding: 12px 14px;
+  background: var(--surf);
+}
+
+.mc-lbl {
+  font-size: 8.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 5px;
+}
+
+.mc-val {
+  font-family: var(--ffd);
+  font-size: 19px;
+  font-weight: bold;
+  color: var(--navy);
+  line-height: 1;
+}
+
+.mc-dlt {
+  font-size: 9.5px;
+  margin-top: 5px;
+  font-weight: 600;
+}
+
+.mc-dlt.up {
+  color: var(--green);
+}
+
+.mc-dlt.down {
+  color: var(--red);
+}
+
+.mc-dlt.flat {
+  color: var(--muted);
+}
+
+.tblock {
+  margin-bottom: 28px;
+}
+
+.tb-hd {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 9px;
+}
+
+.tb-idx {
+  background: var(--navy);
+  color: var(--gold-lt);
+  font-size: 9px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  padding: 3px 9px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.tb-ttl {
+  font-family: var(--ffd);
+  font-size: 12.5px;
+  font-weight: bold;
+  color: var(--navy);
+}
+
+.tb-rule {
+  flex: 1;
+  height: 1px;
+  background: var(--bord);
+}
+
+.tb-tag {
+  font-size: 8.5px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 2px 9px;
+  border-radius: 20px;
+  background: var(--gold-pale);
+  color: var(--gold);
+  border: 1px solid #EDD59A;
+  white-space: nowrap;
+}
+
+.tb-desc {
+  font-size: 10.5px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+
+.tb-note {
+  margin-top: 6px;
+  font-size: 9.5px;
+  color: var(--muted);
+  padding-left: 4px;
+}
+
+.tb-note::before {
+  content: '* ';
+}
+
+.chip {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 9px;
+  font-weight: bold;
+  letter-spacing: .4px;
+}
+
+.chip-green {
+  background: var(--gbg);
+  color: var(--green);
+}
+
+.chip-red {
+  background: var(--rbg);
+  color: var(--red);
+}
+
+.chip-amber {
+  background: var(--abg);
+  color: var(--amber);
+}
+
+.chip-navy {
+  background: var(--surf);
+  color: var(--muted);
+  border: 1px solid var(--bord);
+}
+
+.chip-gold {
+  background: var(--gold-pale);
+  color: var(--gold);
+  border: 1px solid #EDD59A;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   FIRMAS Y FOOTER — compartidos
+   ══════════════════════════════════════════════════════════════ */
+.signs {
+  display: grid;
+  gap: 28px;
+  margin-top: 36px;
+}
+
+.sign-2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+.sign-3 {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.sblk {
+  text-align: center;
+}
+
+.sline {
+  height: 1px;
+  background: var(--navy);
+  margin-bottom: 7px;
+}
+
+.sname {
+  font-family: var(--ffd);
+  font-size: 11.5px;
+  font-weight: bold;
+  color: var(--text);
+}
+
+.srole {
+  font-size: 9.5px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+@media print {
+
+  html,
+  body {
+    background: white;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   FOOTER — gestionado por Puppeteer (displayHeaderFooter)
+   El elemento .ftr del HTML se oculta; el footer real lo
+   inyecta Puppeteer en cada página automáticamente.
+   ══════════════════════════════════════════════════════════════ */
+.ftr {
+  display: none;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   CONTROL DE SALTOS DE PÁGINA
+   Evita que bloques se corten al cambiar de página en el PDF
+   ══════════════════════════════════════════════════════════════ */
+
+/* Nunca cortar estos elementos internamente */
+.pcard,
+.ccard,
+.mcard,
+.callout,
+.note,
+.pquote,
+.trow,
+.trow-final,
+.sblk,
+.tb-hd,
+.tb-desc,
+.tb-note {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+/* Mantener secciones completas cuando sea posible */
+.sec,
+.tblock,
+.cgrid,
+.parties,
+.signs {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+/* Evitar que el título de sección quede solo al final de la página */
+.sec-hd,
+.sep,
+.tb-hd {
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
+/* Tablas: repetir header en cada página, no cortar filas */
+thead {
+  display: table-header-group;
+}
+
+tfoot {
+  display: table-footer-group;
+}
+
+tr {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+/* Intro */
+.intro {
+  background: var(--gold-pale);
+  border: 1px solid #EDD59A;
+  border-left: 4px solid var(--gold);
+  border-radius: 0 7px 7px 0;
+  padding: 13px 17px;
+  margin-bottom: 24px;
+  font-size: 11px;
+  line-height: 1.8;
+  color: var(--text-s);
+}
+
+/* Exec summary */
+.exec {
+  background: var(--gold-pale);
+  border: 1px solid #EDD59A;
+  border-left: 4px solid var(--gold);
+  border-radius: 0 7px 7px 0;
+  padding: 16px 20px;
+  margin-bottom: 28px;
+}
+
+.exec-lbl {
+  font-size: 8.5px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: bold;
+  margin-bottom: 7px;
+}
+
+.exec p {
+  font-size: 11.5px;
+  line-height: 1.8;
+  color: var(--text-s);
+}
+
+/* Observations */
+.obs {
+  background: var(--gold-pale);
+  border: 1px solid #EDD59A;
+  border-left: 4px solid var(--gold);
+  border-radius: 0 7px 7px 0;
+  padding: 13px 17px;
+  margin-top: 24px;
+}
+
+.obs-ttl {
+  font-size: 8.5px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.obs p {
+  font-size: 11px;
+  line-height: 1.8;
+  color: var(--text-s);
+}
+
+@media print {
+
+  html,
+  body {
+    background: white;
+  }
+
+  .pcard,
+  .ccard,
+  .mcard,
+  .callout,
+  .note,
+  .pquote,
+  .sec,
+  .tblock,
+  .cgrid,
+  .parties,
+  .signs,
+  .sblk {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .sec-hd,
+  .sep,
+  .tb-hd {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tfoot {
+    display: table-footer-group;
+  }
+
+  tr {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}

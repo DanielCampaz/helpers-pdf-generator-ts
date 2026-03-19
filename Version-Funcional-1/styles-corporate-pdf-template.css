@@ -1,0 +1,475 @@
+/*
+     * LAYOUT: Puppeteer imprime con margin:15mm (≈56px) en cada lado.
+     * La página ocupa el 100% del área imprimible.
+     * --mg = padding interno adicional → margen visual total ≈ 96px por lado.
+     * La banda izquierda (5px) está dentro del padding, no lo rompe.
+     */
+:root {
+    --navy: #0B1829;
+    --navy-mid: #152540;
+    --navy-s: #1E3A5F;
+    --gold: #C8973A;
+    --gold-lt: #E4B86A;
+    --gold-pale: #FDF3E0;
+    --surf: #F5F7FA;
+    --bord: #DDE3EC;
+    --text: #1A2332;
+    --text-s: #4A5568;
+    --muted: #8896A8;
+    --W: #FFFFFF;
+    --ffd: 'Georgia', 'Times New Roman', serif;
+    --ffs: 'Helvetica Neue', 'Arial', sans-serif;
+    --mg: 36px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    background: #fff;
+}
+
+body {
+    font-family: var(--ffs);
+    color: var(--text);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+/* Página ocupa todo el ancho imprimible */
+.page {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 64px;
+}
+
+/* Banda lateral izquierda decorativa */
+.page::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background: linear-gradient(180deg, var(--gold) 0%, var(--navy-s) 100%);
+    z-index: 2;
+}
+
+/* ── Header ─────────────────────────────────────────────── */
+.hdr {
+    background: var(--navy);
+    padding: 26px var(--mg) 22px calc(var(--mg) + 5px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.hdr-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.logo-wrap {
+    width: 52px;
+    height: 52px;
+    border-radius: 9px;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gold);
+}
+
+.logo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.logo-initials {
+    font-family: var(--ffd);
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--navy);
+    letter-spacing: -1px;
+}
+
+.logo-wrap.has-image .logo-initials {
+    display: none;
+}
+
+.hdr-name h1 {
+    font-family: var(--ffd);
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--W);
+    letter-spacing: .2px;
+}
+
+.hdr-name p {
+    font-size: 9px;
+    color: rgba(255, 255, 255, .4);
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    margin-top: 4px;
+}
+
+.hdr-meta {
+    text-align: right;
+}
+
+.hm-type {
+    font-size: 8.5px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold-lt);
+    margin-bottom: 5px;
+}
+
+.hm-num {
+    font-family: var(--ffd);
+    font-size: 15px;
+    font-weight: bold;
+    color: var(--W);
+}
+
+.hm-date {
+    font-size: 10px;
+    color: rgba(255, 255, 255, .4);
+    margin-top: 4px;
+}
+
+/* ── Title bar ──────────────────────────────────────────── */
+.tbar {
+    background: var(--gold);
+    padding: 11px var(--mg) 11px calc(var(--mg) + 5px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.tbar h2 {
+    font-family: var(--ffd);
+    font-size: 15px;
+    color: var(--navy);
+    font-weight: bold;
+}
+
+.tbar-badge {
+    background: var(--navy);
+    color: var(--gold-lt);
+    font-size: 8.5px;
+    font-weight: bold;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+/* ── Body ───────────────────────────────────────────────── */
+.body {
+    padding: 32px var(--mg) 32px calc(var(--mg) + 5px);
+}
+
+/* Partes */
+.parties {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.pcard {
+    border: 1px solid var(--bord);
+    border-radius: 8px;
+    padding: 15px 17px;
+    background: var(--surf);
+}
+
+.pcard-lbl {
+    font-size: 8.5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--navy-s);
+    font-weight: bold;
+    margin-bottom: 9px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pcard-lbl::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--gold);
+    opacity: .4;
+}
+
+.pcard-name {
+    font-family: var(--ffd);
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--text);
+    margin-bottom: 6px;
+}
+
+.pcard-det {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.75;
+}
+
+/* Sección */
+.sec {
+    margin-bottom: 26px;
+}
+
+.sec-hd {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.sec-dot {
+    width: 7px;
+    height: 7px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.sec-hd h3 {
+    font-family: var(--ffd);
+    font-size: 11.5px;
+    font-weight: bold;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+.sec-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--bord);
+}
+
+.para {
+    font-size: 11.5px;
+    line-height: 1.85;
+    color: var(--text-s);
+    text-align: justify;
+}
+
+/* Tabla */
+.twrap {
+    border-radius: 7px;
+    overflow: hidden;
+    border: 1px solid var(--bord);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+}
+
+thead tr {
+    background: var(--navy-mid);
+}
+
+thead th {
+    padding: 9px 12px;
+    text-align: left;
+    color: rgba(255, 255, 255, .9);
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: .8px;
+}
+
+thead th:last-child {
+    text-align: right;
+}
+
+tbody tr {
+    border-bottom: 1px solid var(--bord);
+}
+
+tbody tr:last-child {
+    border-bottom: none;
+}
+
+tbody tr:nth-child(even) {
+    background: var(--surf);
+}
+
+tbody td {
+    padding: 8px 12px;
+    color: var(--text);
+}
+
+tbody td:last-child {
+    text-align: right;
+    font-weight: 600;
+    color: var(--navy-s);
+}
+
+/* Totales */
+.totals {
+    margin-top: 16px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.tbox {
+    min-width: 260px;
+    max-width: 320px;
+    width: 42%;
+    border: 1px solid var(--bord);
+    border-radius: 7px;
+    overflow: hidden;
+}
+
+.trow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 14px;
+    font-size: 11.5px;
+    border-bottom: 1px solid var(--bord);
+}
+
+.trow:last-child {
+    border-bottom: none;
+}
+
+.tlbl {
+    color: var(--muted);
+}
+
+.tval {
+    font-weight: 600;
+    color: var(--text);
+}
+
+.trow-final {
+    background: var(--navy);
+    padding: 11px 14px;
+}
+
+.trow-final .tlbl {
+    color: rgba(255, 255, 255, .6);
+    font-weight: bold;
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+}
+
+.trow-final .tval {
+    color: var(--gold-lt);
+    font-size: 14px;
+    font-family: var(--ffd);
+}
+
+/* Nota */
+.note {
+    background: var(--surf);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 7px 7px 0;
+    padding: 13px 16px;
+    font-size: 11px;
+    line-height: 1.75;
+    color: var(--text-s);
+}
+
+.note strong {
+    color: var(--navy-s);
+}
+
+/* Firmas */
+.signs {
+    display: grid;
+    gap: 32px;
+    margin-top: 40px;
+}
+
+.sign-2 {
+    grid-template-columns: 1fr 1fr;
+}
+
+.sign-3 {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.sblk {
+    text-align: center;
+}
+
+.sline {
+    height: 1px;
+    background: var(--navy);
+    margin-bottom: 8px;
+}
+
+.sname {
+    font-family: var(--ffd);
+    font-size: 11.5px;
+    font-weight: bold;
+    color: var(--text);
+}
+
+.srole {
+    font-size: 9.5px;
+    color: var(--muted);
+    margin-top: 2px;
+}
+
+/* Footer */
+.ftr {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--navy);
+    padding: 10px var(--mg) 10px calc(var(--mg) + 5px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fl,
+.fr {
+    font-size: 9px;
+    color: rgba(255, 255, 255, .38);
+}
+
+.fpg {
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 9px;
+    font-weight: bold;
+    padding: 3px 12px;
+    border-radius: 20px;
+}
+
+@media print {
+    body {
+        background: white;
+    }
+}
