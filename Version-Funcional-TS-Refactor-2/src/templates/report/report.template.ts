@@ -1,6 +1,6 @@
 import { ReportContext, ReportData } from "./types";
 import { BrandConfig, buildSignatories, LogoResult, PdfTemplate } from "../../core/PdfGenerator";
-import { buildSections } from "./builders";
+import { buildExcutiveSummary, buildSections } from "./builders";
 
 export class ReportTemplate implements PdfTemplate<ReportData, ReportContext> {
   public static readonly key = 'report';           // ← clave CLI: --type contract
@@ -29,6 +29,7 @@ export class ReportTemplate implements PdfTemplate<ReportData, ReportContext> {
       SIGN_CLASS: `sign-${Math.min(cols, 3)}`,
       SECTIONS_HTML: buildSections(data.SECTIONS),
       SIGNATORIES_HTML: buildSignatories(data.SIGNATORIES),
+      EXECUTIVE_HTML: buildExcutiveSummary(data.EXECUTIVE_SUMMARY)
     };
   }
 }

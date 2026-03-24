@@ -43,4 +43,5 @@ export interface ReportData extends BaseTemplateData {
 export interface ReportContext extends BaseContext, ReportData {
     SECTIONS_HTML: string;
     SIGN_CLASS: string;
+    EXECUTIVE_HTML: string;
 }

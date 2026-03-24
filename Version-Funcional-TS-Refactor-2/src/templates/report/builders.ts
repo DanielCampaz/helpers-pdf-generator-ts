@@ -55,6 +55,15 @@ export function buildSections(sections: ReportSection[]): string {
     }).join('');
 }
 
+export function buildExcutiveSummary(summary: string) {
+    return `
+    <div class="exec">
+        <div class="exec-lbl">Resumen Ejecutivo</div>
+        <p>${esc(summary)}</p>
+      </div>
+    `;
+}
+
 // ═══════════════════════════════════════════════════════════════
 //  HELPERS para construir celdas (para usar en los datos)
 // ═══════════════════════════════════════════════════════════════
