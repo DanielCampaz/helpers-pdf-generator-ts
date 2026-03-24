@@ -21,9 +21,13 @@ export function buildHtmlHdr(hdrData: HdrData): any {
 }
 
 export function buildHtmlTbar(tbarData: TBarData): string {
+    let classes = '';
+    if (tbarData.classes && tbarData.classes.length > 0) {
+        classes = tbarData.classes.join(' ');
+    }
     return `
         <div class="tbar">
-            <h2>${tbarData.documentTitle}</h2><span class="tbar-badge">${tbarData.label}</span>
+            <h2>${tbarData.documentTitle}</h2><span class="tbar-badge ${classes}">${tbarData.label}</span>
         </div>
     `;
 }

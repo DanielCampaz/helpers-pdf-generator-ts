@@ -218,6 +218,18 @@ body {
   white-space: nowrap;
 }
 
+.tbar-badge.color.green {
+  background: var(--green);
+}
+
+.tbar-badge.color.red {
+  background: var(--red);
+}
+
+.tbar-badge.color.amber {
+  background: var(--amber);
+}
+
 /* ── Strip de metadatos (informe narrativo / tablas) ─────────── */
 /* .istrip → informe narrativo  |  .mbar → informe tablas
    Misma estructura, solo difiere el selector */

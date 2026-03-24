@@ -20,8 +20,19 @@ export interface InvoiceItemData {
     total: string;
 }
 
+export interface InvoiceTableData {
+    name: string;
+    ths: string[];
+    items: InvoiceItemData[];
+    totalTableItems: {
+        label: string;
+        value: string;
+    }[];
+}
+
 export interface InvoiceData extends BaseTemplateData {
-    STATUS_BADGE: string;
+    STATUS_BADGE: 'Pendiente' | 'Pagada' | 'Vencida' | 'Retrasada';
+    STATUS_BADGE_CEO: 'paid' | 'pending' | 'overdue' | 'delayed',
     SENDER_NAME: string;
     SENDER_ADDRESS: string;
     SENDER_CITY: string;
@@ -49,4 +60,8 @@ export interface InvoiceData extends BaseTemplateData {
 
 export interface InvoiceContext extends BaseContext, InvoiceData {
     ITEMS_HTML: string;
+    PARTIES_HTML: string;
+    DESCRIPTION_HTML: string;
+    DETAILS_INVOICE_HTML: string;
+    TERMS_HTML: string;
 }

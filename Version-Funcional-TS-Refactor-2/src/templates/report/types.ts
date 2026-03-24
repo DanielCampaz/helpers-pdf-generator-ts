@@ -45,3 +45,9 @@ export interface ReportContext extends BaseContext, ReportData {
     SIGN_CLASS: string;
     EXECUTIVE_HTML: string;
 }
+
+export interface ReportCardDetailData {
+    label: string;
+    name: string;
+    detail: string[]
+}

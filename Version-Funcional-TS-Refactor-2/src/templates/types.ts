@@ -3,6 +3,7 @@ import { BaseContext, BaseTemplateData } from "../core/PdfGenerator";
 export interface TBarData {
     documentTitle: string;
     label: string;
+    classes?: string[];
 }
 
 export interface MbCellData {

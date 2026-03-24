@@ -35,6 +35,7 @@ const invoiceDefaultData: InvoiceData = {
     DOC_DATE: '15 de marzo de 2025',
     DOCUMENT_TITLE: 'Factura de Servicios Profesionales',
     STATUS_BADGE: 'Pendiente',
+    STATUS_BADGE_CEO: 'pending',
 
     SENDER_NAME: 'Acme Consulting S.A.S.',
     SENDER_ADDRESS: 'Cra. 7 # 71-21, Of. 502',
