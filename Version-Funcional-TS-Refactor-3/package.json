@@ -5,18 +5,20 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build":   "tsc",
-    "dev":     "ts-node src/cli.ts",
+    "build": "tsc",
+    "dev": "ts-node src/cli.ts",
     "invoice": "ts-node src/cli.ts --type invoice",
-    "report":  "ts-node src/cli.ts --type report",
-    "tables":  "ts-node src/cli.ts --type tables"
+    "report": "ts-node src/cli.ts --type report",
+    "tables": "ts-node src/cli.ts --type tables",
+    "onlycode": "ts-node src/cli.ts --type onlycode"
   },
   "dependencies": {
+    "clipboardy": "^5.3.1",
     "puppeteer": "^21.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
-    "ts-node":     "^10.9.0",
-    "typescript":  "^5.3.0"
+    "ts-node": "^10.9.0",
+    "typescript": "^5.3.0"
   }
 }

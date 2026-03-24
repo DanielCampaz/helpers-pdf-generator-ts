@@ -18,6 +18,13 @@ export function fill(template: string, ctx: Record<string, unknown>): string {
     });
 }
 
+export function fillForHtmlComplete(template: string, ctx: Record<string, unknown>): string {
+    return template.replace(/\{\{([\w]+)\}\}/g, (_, k: string) => {
+        if (k.endsWith('_HTML') || k === 'LOGO_IMG_TAG') return String(ctx[k] ?? '');
+        return ctx[k] !== undefined ? String(ctx[k]) : '';
+    });
+}
+
 /** Convierte un logo en base64 o devuelve vacío si no existe */
 export function loadLogo(logoPath?: string | null): LogoResult {
     if (!logoPath || !fs.existsSync(logoPath)) {

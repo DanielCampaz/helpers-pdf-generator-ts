@@ -1,9 +1,10 @@
 import puppeteer from 'puppeteer';
 import fs from 'fs';
 import path from 'path';
-import { buildPuppeteerFooter, buildPuppeteerHeader, fill, injectStyles, loadLogo } from './dinamic-components';
+import { buildPuppeteerFooter, buildPuppeteerHeader, fill, fillForHtmlComplete, injectStyles, loadLogo } from './dinamic-components';
 import { PdfTemplate, PdfGeneratorOptions, BrandConfig, GenerateOptions, LogoResult, BaseTemplateData, BaseContext } from './types';
 import { getTemplate } from './registers-templates';
+import clipboard from 'clipboardy';
 
 // ═══════════════════════════════════════════════════════════════
 //  MOTOR DE GENERACIÓN
@@ -40,6 +41,9 @@ export class PdfGenerator {
             throw new Error('BrandConfig no establecido. Usa setBrandConfig() antes de generar PDFs.');
         }
         const template = getTemplate(options.type) as PdfTemplate<TData, BaseContext>;
+        if (template === null || template === undefined) {
+            throw new Error(`Template no encontrado para el tipo: ${options.type}`);
+        }
         if (options.data !== undefined) {
             template.setData(options.data);
         }
@@ -62,8 +66,13 @@ export class PdfGenerator {
         }
         const rawHtml = fs.readFileSync(tplPath, 'utf8');
         const withCss = injectStyles(rawHtml, this.cssPaths);
-        const finalHtml = fill(withCss, ctx);
-
+        let finalHtml: string;
+        if (ctx.HTML_CONTENT !== undefined && typeof ctx.HTML_CONTENT === 'string') {
+            finalHtml = fillForHtmlComplete(withCss, ctx);
+        } else {
+            finalHtml = fill(withCss, ctx);
+        }
+        await clipboard.write(finalHtml);
         // Puppeteer
         console.log(`🚀  Generando PDF [${options.type}]${this.brandConfig.LOGO_PATH ? ` — logo: ${this.brandConfig.LOGO_PATH}` : ''}…`);
 

@@ -11,6 +11,7 @@
 import path from 'path';
 import { initializePdfGenerator } from './core/PdfGenerator';
 import { dataDefaults, InvoiceTemplate, ReportTemplate, TablesReportTemplate } from './templates';
+import { OnlyCodeTemplate } from './templates/onlycode';
 
 async function main() {
   // ── Parsear argumentos CLI ───────────────────────────────────
@@ -47,7 +48,13 @@ async function main() {
       key: TablesReportTemplate.key,
       template: tablesReportTemplate
     };
-    const templatesOptions = [invoiceRegister, reportRegister, tablesReportRegister];
+    const onlyCodeTemplate = new OnlyCodeTemplate();
+    onlyCodeTemplate.setData(dataDefaults.REPORTDEFAULTDATA);
+    const onlyCodeRegister = {
+      key: OnlyCodeTemplate.key,
+      template: onlyCodeTemplate
+    };
+    const templatesOptions = [invoiceRegister, reportRegister, tablesReportRegister, onlyCodeRegister];
     // ── Configurar Brand (Obligatorio) ──────────────────────────────
     // Antes de generar, se debe configurar la marca (Brand) con la que se desea generar los documentos. Esto es obligatorio, ya que los templates requieren esta información para construir el contexto de generación.
     // ── Instanciar el motor ──────────────────────────────────────

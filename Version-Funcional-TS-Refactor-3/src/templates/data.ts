@@ -2,11 +2,12 @@ import { ContractData } from "./contract";
 import { InvoiceData } from "./invoice";
 import { ReportData } from "./report";
 import { cell, chipCell, TablesReportData } from "./tables-report";
+import { formatDate } from "./utils";
 
 const contractDefaultData: ContractData = {
     DOC_TYPE_LABEL: 'Contrato',
     DOC_NUMBER: 'CT-2025-001',
-    DOC_DATE: '15 de marzo de 2025',
+    DOC_DATE: formatDate(new Date()),
     DOCUMENT_TITLE: 'Contrato de Prestación de Servicios',
     CONTRACT_NUMBER: 'CT-2025-001',
     VALID_FROM: '1 de abril de 2025',
@@ -32,7 +33,7 @@ const contractDefaultData: ContractData = {
 const invoiceDefaultData: InvoiceData = {
     DOC_TYPE_LABEL: 'Factura',
     DOC_NUMBER: 'INV-2025-001',
-    DOC_DATE: '15 de marzo de 2025',
+    DOC_DATE: formatDate(new Date()),
     DOCUMENT_TITLE: 'Factura de Servicios Profesionales',
     STATUS_BADGE: 'Pendiente',
     STATUS_BADGE_CEO: 'pending',
@@ -88,7 +89,7 @@ const invoiceDefaultData: InvoiceData = {
 const reportDefaultData: ReportData = {
     DOC_TYPE_LABEL: 'Informe Corporativo',
     DOC_NUMBER: 'RPT-2025-Q1-007',
-    DOC_DATE: '15 de marzo de 2025',
+    DOC_DATE: formatDate(new Date()),
     DOC_VERSION: 'v2.1',
     DOCUMENT_TITLE: 'Informe de Gestión — Primer Trimestre 2025',
     AUTHOR_NAME: 'Dpto. de Planeación',
@@ -150,7 +151,7 @@ const reportDefaultData: ReportData = {
 const tablesReportDefaultData: TablesReportData = {
     DOC_TYPE_LABEL: 'Informe de Datos',
     DOC_NUMBER: 'DAT-2025-Q1-003',
-    DOC_DATE: '15 de marzo de 2025',
+    DOC_DATE: formatDate(new Date()),
     DOC_VERSION: 'v1.0',
     DOCUMENT_TITLE: 'Consolidado de Indicadores Operativos — Q1 2025',
     PERIOD: 'Ene – Mar 2025',
