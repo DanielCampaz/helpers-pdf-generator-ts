@@ -1,22 +1,23 @@
 import puppeteer from 'puppeteer';
 import fs from 'fs';
 import path from 'path';
-import { getTemplate } from '../../templates';
 import { buildPuppeteerFooter, buildPuppeteerHeader, fill, injectStyles, loadLogo } from './dinamic-components';
 import { PdfTemplate, PdfGeneratorOptions, BrandConfig, GenerateOptions, LogoResult, BaseTemplateData, BaseContext } from './types';
+import { getTemplate } from './registers-templates';
 
 // ═══════════════════════════════════════════════════════════════
 //  MOTOR DE GENERACIÓN
 // ═══════════════════════════════════════════════════════════════
 export class PdfGenerator {
     private readonly templatesDir: string;
-    private readonly cssPath: string;
+    private readonly cssPaths: string[];
     private brandConfig: BrandConfig | null = null;
 
     constructor(options: PdfGeneratorOptions) {
         this.templatesDir = options.templatesDir;
         //this.cssPath      = path.join(options.cssDir ?? options.templatesDir, 'styles-corporate.css');
-        this.cssPath = options.cssDir
+        this.cssPaths = options.cssDirs;
+        this.cssPaths.push(path.join(__dirname, './statics/css/styles-default.css'));
     }
 
     /*
@@ -43,7 +44,7 @@ export class PdfGenerator {
             template.setData(options.data);
         }
         // Fusionar: defaultData ← customData ← brand ← logo
-        const logo = loadLogo(options.logoPath);
+        const logo = loadLogo(this.brandConfig.LOGO_PATH);
         const rawData = {
             ...template.getData(),  // defaultData
             ...customData,
@@ -60,11 +61,11 @@ export class PdfGenerator {
             throw new Error(`Template HTML no encontrado: ${tplPath}`);
         }
         const rawHtml = fs.readFileSync(tplPath, 'utf8');
-        const withCss = injectStyles(rawHtml, this.cssPath);
+        const withCss = injectStyles(rawHtml, this.cssPaths);
         const finalHtml = fill(withCss, ctx);
 
         // Puppeteer
-        console.log(`🚀  Generando PDF [${options.type}]${options.logoPath ? ` — logo: ${options.logoPath}` : ''}…`);
+        console.log(`🚀  Generando PDF [${options.type}]${this.brandConfig.LOGO_PATH ? ` — logo: ${this.brandConfig.LOGO_PATH}` : ''}…`);
 
         const browser = await puppeteer.launch({
             headless: true,

@@ -1,0 +1,30 @@
+.logo-wrap.no-image {
+    background: var(--resalt);
+}
+
+.logo-wrap.has-image .logo-initials {
+    display: none;
+}
+
+.sblk {
+    text-align: center;
+}
+
+.sline {
+    height: 1px;
+    background: var(--navy);
+    margin-bottom: 7px;
+}
+
+.sname {
+    font-family: var(--ffd);
+    font-size: 11.5px;
+    font-weight: bold;
+    color: var(--text);
+}
+
+.srole {
+    font-size: 9.5px;
+    color: var(--muted);
+    margin-top: 2px;
+}

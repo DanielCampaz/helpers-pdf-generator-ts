@@ -1,5 +1,5 @@
 import { BrandConfig, buildSignatories, LogoResult, PdfTemplate } from "../../core/PdfGenerator";
-import { buildMetrics, buildObservations, buildTables } from "./builders";
+import { buildIntro, buildMetrics, buildObservations, buildTables } from "./builders";
 import { TablesReportContext, TablesReportData } from "./types";
 
 
@@ -27,11 +27,12 @@ export class TablesReportTemplate implements PdfTemplate<TablesReportData, Table
 
     return {
       ...data,
-      SIGN_CLASS: `sign-${Math.min(cols, 3)}`,
+      SIGN_CLASS: `sign-${Math.min(cols, 10)}`,
       METRICS_HTML: buildMetrics(data.METRICS),
       TABLES_HTML: buildTables(data.TABLES),
       OBSERVATIONS_HTML: buildObservations(data.OBSERVATIONS),
       SIGNATORIES_HTML: buildSignatories(data.SIGNATORIES),
+      INTRO_HTML: buildIntro(data.INTRO_HTML),
     };
   }
 }

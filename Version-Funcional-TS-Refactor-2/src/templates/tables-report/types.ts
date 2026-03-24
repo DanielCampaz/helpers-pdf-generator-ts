@@ -36,7 +36,7 @@ export interface Metric {
     label: string;
     value: string;
     delta: string;
-    trend: 'up' | 'down' | 'flat';
+    trend: 'up' | 'down' | 'flat' | 'none';
 }
 
 export interface TablesReportData extends BaseTemplateData {
@@ -46,7 +46,7 @@ export interface TablesReportData extends BaseTemplateData {
     AREA: string;
     STATUS: string;
     CLASSIFICATION: string;
-    INTRO_TEXT: string;
+    INTRO_HTML: string;
     METRICS: Metric[];
     TABLES: DataTable[];
     OBSERVATIONS: string;

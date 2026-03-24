@@ -3,8 +3,15 @@ export interface PdfGeneratorOptions {
     /** Directorio donde están los .html y styles-corporate.css */
     templatesDir: string;
     /** Directorio del CSS compartido (default: mismo que templatesDir) */
-    cssDir: string;
+    cssDirs: string[];
 }
+
+export interface PdfGeneratorSetTemplateOptions { key: string, template: PdfTemplate<BaseTemplateData, BaseContext> }
+
+export interface InitializePdfGeneratorOptions extends PdfGeneratorOptions, BrandConfig {
+    templatesOptions: PdfGeneratorSetTemplateOptions[]
+}
+
 
 // ═══════════════════════════════════════════════════════════════
 //  TIPOS BASE
@@ -13,6 +20,7 @@ export interface PdfGeneratorOptions {
 /** Datos de marca compartidos por todos los templates */
 export interface BrandConfig {
     LOGO_INITIALS: string;
+    LOGO_PATH?: string | null;
     COMPANY_NAME: string;
     COMPANY_TAGLINE: string;
     COMPANY_WEBSITE: string;
@@ -34,7 +42,6 @@ export interface Signatory {
 /** Opciones de entrada para generar un PDF */
 export interface GenerateOptions<TData extends BaseTemplateData> {
     type: string;         // clave del template, ej: 'invoice' | 'report'
-    logoPath?: string | null;  // ruta al PNG/JPG del logo
     outputPath: string;         // ruta del PDF resultante
     data?: TData
 }

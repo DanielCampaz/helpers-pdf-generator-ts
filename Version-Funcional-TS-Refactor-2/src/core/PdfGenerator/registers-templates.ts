@@ -1,4 +1,4 @@
-import type { BaseContext, BaseTemplateData, PdfTemplate } from '../core/PdfGenerator';
+import type { BaseContext, BaseTemplateData, PdfGeneratorSetTemplateOptions, PdfTemplate } from './types';
 
 // ═══════════════════════════════════════════════════════════════
 //  REGISTRO DE TEMPLATES
@@ -20,7 +20,7 @@ export const templateRegistry = new Map<string, PdfTemplate<BaseTemplateData, Ba
 //   templateRegistry.set(key, template);
 // }
 
-export function setTemplate(fnTemplate: () => { key: string, template: PdfTemplate<BaseTemplateData, BaseContext> }) {
+export function setTemplate(fnTemplate: () => PdfGeneratorSetTemplateOptions) {
     const templateRegister = fnTemplate();
     if (templateRegister.key === undefined || templateRegister.template === undefined) {
         throw new Error(`Error al registrar template: la función debe retornar un objeto con la forma { key: string, template: PdfTemplate }`);

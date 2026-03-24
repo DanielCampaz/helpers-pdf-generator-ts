@@ -6,13 +6,25 @@ import { esc } from "../../core/PdfGenerator";
 import { DataTable, Metric, TableCell, TableColumn, TableRow } from "./types";
 
 export function buildMetrics(metrics: Metric[]): string {
-    return metrics.map(m => `
+    const indicators: Record<Metric['trend'], string> = {
+        up: '▲',
+        down: '▼',
+        flat: '→',
+        none: '',
+    }
+    const metricsHtml = metrics.map(m => `
     <div class="mcard">
       <div class="mc-lbl">${esc(m.label)}</div>
       <div class="mc-val">${esc(m.value)}</div>
-      <div class="mc-dlt ${esc(m.trend)}">${esc(m.delta)}</div>
+      <div class="mc-dlt ${esc(m.trend)}">${indicators[m.trend]} ${esc(m.delta)}</div>
     </div>`
     ).join('');
+    return `<div class="sep"><span class="sep-txt">Indicadores Clave</span><span class="sep-ln"></span></div><div class="metrics">${metricsHtml}</div>`;
+}
+
+export function buildIntro(text: string): string {
+    if (!text) return '';
+    return `<div class="intro">${esc(text)}</div>`;
 }
 
 export function buildCell(c: TableCell): string {
@@ -46,23 +58,24 @@ export function buildTables(tables: DataTable[]): string {
             : '';
 
         return `
-    <div class="tblock">
-      <div class="tb-hd">
-        <span class="tb-idx">T–${esc(t.index)}</span>
-        <span class="tb-ttl">${esc(t.title)}</span>
-        <span class="tb-rule"></span>
-        <span class="tb-tag">${esc(t.badge)}</span>
-      </div>
-      ${desc}
-      <div class="twrap">
-        <table>
-          <thead><tr>${headers}</tr></thead>
-          <tbody>${rows}</tbody>
-          ${foot}
-        </table>
-      </div>
-      ${note}
-    </div>`;
+        <div class="sep"><span class="sep-txt">Tablas de Datos</span><span class="sep-ln"></span></div>
+        <div class="tblock">
+            <div class="tb-hd">
+                <span class="tb-idx">T–${esc(t.index)}</span>
+                <span class="tb-ttl">${esc(t.title)}</span>
+                <span class="tb-rule"></span>
+                <span class="tb-tag">${esc(t.badge)}</span>
+            </div>
+            ${desc}
+            <div class="twrap">
+                <table>
+                <thead><tr>${headers}</tr></thead>
+                <tbody>${rows}</tbody>
+                ${foot}
+                </table>
+            </div>
+            ${note}
+        </div>`;
     }).join('');
 }
 

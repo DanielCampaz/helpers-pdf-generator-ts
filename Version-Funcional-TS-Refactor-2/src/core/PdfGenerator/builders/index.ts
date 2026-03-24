@@ -1,6 +1,3 @@
-//import type { Signatory, TableCell, TableRow, TableColumn, DataTable, Metric, ReportSection } from '../../../types';
-
-import { TableCell } from "../../../templates/tables-report";
 import { Signatory } from "../types";
 
 // ═══════════════════════════════════════════════════════════════
@@ -21,11 +18,18 @@ export function esc(v: unknown): string {
 // ═══════════════════════════════════════════════════════════════
 
 export function buildSignatories(list: Signatory[]): string {
-  return list.map(s => `
+  const cols = list.length ?? 2;
+
+  const signatures = list.map(s => `
     <div class="sblk">
       <div class="sline"></div>
       <div class="sname">${esc(s.name)}</div>
       <div class="srole">${esc(s.role)}</div>
     </div>`
   ).join('');
+
+
+  return `
+    <div class="signs sign-${Math.min(cols, 10)}">${signatures}</div>
+  `;
 }

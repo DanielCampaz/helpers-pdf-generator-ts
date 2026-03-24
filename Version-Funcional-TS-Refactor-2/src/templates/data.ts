@@ -158,14 +158,14 @@ const tablesReportDefaultData: TablesReportData = {
     STATUS: 'Aprobado',
     CLASSIFICATION: 'Interno',
 
-    INTRO_TEXT:
+    INTRO_HTML:
         'Consolidado de indicadores y datos operativos del primer trimestre de 2025.',
 
     METRICS: [
-        { label: 'Ingresos Totales', value: '$24.3M', delta: '▲ +18% vs Q1 2024', trend: 'up' },
-        { label: 'Proyectos Activos', value: '47', delta: '▲ +12 proyectos', trend: 'up' },
-        { label: 'Costo Operativo', value: '$8.1M', delta: '▼ -5% vs meta', trend: 'down' },
-        { label: 'Satisfacción Cliente', value: '94%', delta: '→ sin variación', trend: 'flat' },
+        { label: 'Ingresos Totales', value: '$24.3M', delta: '+18% vs Q1 2024', trend: 'up' },
+        { label: 'Proyectos Activos', value: '47', delta: '+12 proyectos', trend: 'up' },
+        { label: 'Costo Operativo', value: '$8.1M', delta: '-5% vs meta', trend: 'down' },
+        { label: 'Satisfacción Cliente', value: '94%', delta: 'sin variación', trend: 'flat' },
     ],
 
     TABLES: [
