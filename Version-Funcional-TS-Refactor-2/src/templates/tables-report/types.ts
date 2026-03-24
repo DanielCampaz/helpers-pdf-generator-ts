@@ -56,4 +56,6 @@ export interface TablesReportContext extends BaseContext, TablesReportData {
     METRICS_HTML: string;
     TABLES_HTML: string;
     OBSERVATIONS_HTML: string;
+    COMPLETE_HEADER_HTML: string;
+    COMPLETE_FOOTER_HTML: string;
 }

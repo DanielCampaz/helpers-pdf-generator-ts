@@ -221,33 +221,33 @@ body {
 /* ── Strip de metadatos (informe narrativo / tablas) ─────────── */
 /* .istrip → informe narrativo  |  .mbar → informe tablas
    Misma estructura, solo difiere el selector */
-.istrip,
+
 .mbar {
   display: flex;
   background: var(--navy-mid);
   padding: 0 var(--mg) 0 var(--mgl);
 }
 
-.is-cell,
+
 .mb-cell {
   flex: 1;
   padding: 10px 14px 10px 0;
   border-right: 1px solid rgba(255, 255, 255, .1);
 }
 
-.is-cell:first-child,
+
 .mb-cell:first-child {
   padding-left: 0;
 }
 
-.is-cell:last-child,
+
 .mb-cell:last-child {
   border-right: none;
   padding-left: 14px;
   padding-right: 0;
 }
 
-.is-lbl,
+
 .mb-lbl {
   font-size: 7.5px;
   letter-spacing: 2px;
@@ -256,7 +256,7 @@ body {
   margin-bottom: 3px;
 }
 
-.is-val,
+
 .mb-val {
   font-size: 10px;
   color: rgba(255, 255, 255, .85);

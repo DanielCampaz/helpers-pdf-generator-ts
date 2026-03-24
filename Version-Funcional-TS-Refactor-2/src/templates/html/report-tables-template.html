@@ -9,45 +9,7 @@
 
 <body>
   <div class="page">
-    <header class="hdr">
-      <div class="hdr-brand">
-        <div class="logo-wrap {{LOGO_CLASS}}">{{LOGO_IMG_TAG}}<span class="logo-initials">{{LOGO_INITIALS}}</span></div>
-        <div class="hdr-name">
-          <h1>{{COMPANY_NAME}}</h1>
-          <p>{{COMPANY_TAGLINE}}</p>
-        </div>
-      </div>
-      <div class="hdr-meta">
-        <div class="hm-type">{{DOC_TYPE_LABEL}}</div>
-        <div class="hm-num">{{DOC_NUMBER}}</div>
-        <div class="hm-date">{{DOC_DATE}}</div>
-      </div>
-    </header>
-    <div class="tbar">
-      <h2>{{DOCUMENT_TITLE}}</h2><span class="tbar-badge">{{STATUS}}</span>
-    </div>
-    <div class="mbar">
-      <div class="mb-cell">
-        <div class="mb-lbl">Período</div>
-        <div class="mb-val">{{PERIOD}}</div>
-      </div>
-      <div class="mb-cell">
-        <div class="mb-lbl">Responsable</div>
-        <div class="mb-val">{{RESPONSIBLE}}</div>
-      </div>
-      <div class="mb-cell">
-        <div class="mb-lbl">Área</div>
-        <div class="mb-val">{{AREA}}</div>
-      </div>
-      <div class="mb-cell">
-        <div class="mb-lbl">Versión</div>
-        <div class="mb-val">{{DOC_VERSION}}</div>
-      </div>
-      <div class="mb-cell">
-        <div class="mb-lbl">Clasificación</div>
-        <div class="mb-val">{{CLASSIFICATION}}</div>
-      </div>
-    </div>
+    {{COMPLETE_HEADER_HTML}}
     <main class="body">
       {{INTRO_HTML}}
       {{METRICS_HTML}}
@@ -55,11 +17,7 @@
       {{OBSERVATIONS_HTML}}
       {{SIGNATORIES_HTML}}
     </main>
-    <footer class="ftr">
-      <span class="fl">{{COMPANY_NAME}} · {{COMPANY_WEBSITE}}</span>
-      <span class="fpg">{{PAGE_NUMBER}} / {{TOTAL_PAGES}}</span>
-      <span class="fr">{{DOC_NUMBER}} · {{DOC_DATE}}</span>
-    </footer>
+    {{COMPLETE_FOOTER_HTML}}
   </div>
 </body>
 

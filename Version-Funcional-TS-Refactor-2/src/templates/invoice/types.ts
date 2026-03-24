@@ -12,6 +12,14 @@ export interface InvoiceItem {
     total: string;
 }
 
+export interface InvoiceItemData {
+    index: number | string;
+    concept: string;
+    qty: number | string;
+    unit_price: string;
+    total: string;
+}
+
 export interface InvoiceData extends BaseTemplateData {
     STATUS_BADGE: string;
     SENDER_NAME: string;

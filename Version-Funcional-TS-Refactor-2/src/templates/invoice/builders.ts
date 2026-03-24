@@ -3,14 +3,7 @@
 // ═══════════════════════════════════════════════════════════════
 
 import { esc } from "../../core/PdfGenerator";
-
-export interface InvoiceItemData {
-    index: number | string;
-    concept: string;
-    qty: number | string;
-    unit_price: string;
-    total: string;
-}
+import { InvoiceItemData } from "./types";
 
 export function buildItems(items: InvoiceItemData[]): string {
     return items.map(it => `

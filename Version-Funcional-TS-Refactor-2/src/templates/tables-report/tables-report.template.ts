@@ -1,4 +1,5 @@
 import { BrandConfig, buildSignatories, LogoResult, PdfTemplate } from "../../core/PdfGenerator";
+import { buildHtmlCompleteFooter, buildHtmlCompleteHeader } from "../builders";
 import { buildIntro, buildMetrics, buildObservations, buildTables } from "./builders";
 import { TablesReportContext, TablesReportData } from "./types";
 
@@ -33,6 +34,30 @@ export class TablesReportTemplate implements PdfTemplate<TablesReportData, Table
       OBSERVATIONS_HTML: buildObservations(data.OBSERVATIONS),
       SIGNATORIES_HTML: buildSignatories(data.SIGNATORIES),
       INTRO_HTML: buildIntro(data.INTRO_HTML),
+      ...buildHtmlCompleteHeader({
+        tbar: {
+          documentTitle: data.DOCUMENT_TITLE,
+          label: data.STATUS,
+        },
+        mbCells: [
+          { label: 'Periodo', value: data.PERIOD },
+          { label: 'Responsable', value: data.RESPONSIBLE },
+          { label: 'Área', value: data.AREA },
+          { label: 'Versión', value: data.DOC_VERSION },
+          { label: 'Clasificación', value: data.CLASSIFICATION },
+        ],
+        hdr: {
+          COMPANY_NAME: data.COMPANY_NAME,
+          COMPANY_TAGLINE: data.COMPANY_TAGLINE,
+          LOGO_CLASS: data.LOGO_CLASS,
+          LOGO_IMG_TAG: data.LOGO_IMG_TAG,
+          LOGO_INITIALS: data.LOGO_INITIALS,
+          DOC_TYPE_LABEL: data.DOC_TYPE_LABEL,
+          DOC_NUMBER: data.DOC_NUMBER,
+          DOC_DATE: data.DOC_DATE,
+        }
+      }),
+      ...buildHtmlCompleteFooter()
     };
   }
 }
