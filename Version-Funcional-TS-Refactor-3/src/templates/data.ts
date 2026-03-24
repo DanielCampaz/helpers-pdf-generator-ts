@@ -1,7 +1,7 @@
 import { ContractData } from "./contract";
 import { InvoiceData } from "./invoice";
-import { cell, chipCell, ReportData } from "./report";
-import { TablesReportData } from "./tables-report";
+import { ReportData } from "./report";
+import { cell, chipCell, TablesReportData } from "./tables-report";
 
 const contractDefaultData: ContractData = {
     DOC_TYPE_LABEL: 'Contrato',

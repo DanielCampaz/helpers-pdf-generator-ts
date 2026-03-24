@@ -147,6 +147,22 @@ body {
   display: none;
 } */
 
+.sub-spacing-L-15 {
+  margin-left: 15px;
+}
+
+.sub-spacing-L-30 {
+  margin-left: 32px;
+}
+
+.sub-spacing-R-15 {
+  margin-right: 15px;
+}
+
+.sub-spacing-R-30 {
+  margin-right: 32px;
+}
+
 .hdr-name h1 {
   font-family: var(--ffd);
   font-size: 18px;
@@ -486,7 +502,7 @@ body {
   margin-bottom: 5px;
 }
 
-.ccard-txt {
+.ccard-desc {
   font-size: 10.5px;
   line-height: 1.65;
   color: var(--muted);

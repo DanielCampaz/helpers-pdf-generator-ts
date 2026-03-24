@@ -10,6 +10,8 @@ export interface ReportSubsection {
     content: string;
 }
 
+export type SpacingOption = 'L-15' | 'L-30' | 'R-15' | 'R-30';
+
 export interface ReportQuote {
     text: string;
     source: string;
@@ -18,6 +20,17 @@ export interface ReportQuote {
 export interface ReportConclusion {
     title: string;
     text: string;
+}
+
+export interface ReportBuildSection {
+    number: string | number;
+    title: string;
+    html: string | (() => string);
+}
+
+export interface ReportSubSectionData {
+    title: string;
+    content: string;
 }
 
 export interface ReportSection {

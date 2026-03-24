@@ -87,3 +87,19 @@ export function buildObservations(text: string): string {
       <p>${esc(text)}</p>
     </div>`;
 }
+
+// ═══════════════════════════════════════════════════════════════
+//  HELPERS para construir celdas (para usar en los datos)
+// ═══════════════════════════════════════════════════════════════
+
+export const cell = (value: string | number, cls = ''): TableCell => ({
+    chip: null,
+    value: String(value ?? ''),
+    class: cls,
+});
+
+export const chipCell = (value: string, color: TableCell['chip'], cls = ''): TableCell => ({
+    chip: color,
+    value: String(value ?? ''),
+    class: cls,
+});
